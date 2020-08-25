@@ -13,7 +13,6 @@ class ValidateRmaCSVImport extends Controller
 {
     private $errors = [];
     private $products = [];
-    private $break = false;
 
     /**
      * Handle the incoming request.
@@ -58,10 +57,10 @@ class ValidateRmaCSVImport extends Controller
                 $records = $records->toArray();
 
                 $validator = Validator::make(['products' => $records], [
-                    'products' => 'required|array|min:1',
-                    'products.*.name' => 'string|required|max:10',
-                    'products.*.order_id' => 'sometimes|digits:5',
-                    'products.*.imei_sn' => 'required|numeric|digits_between:8,15',
+                    'products'               => 'required|array|min:1',
+                    'products.*.name'        => 'string|required|max:10',
+                    'products.*.order_id'    => 'sometimes|digits:5',
+                    'products.*.imei_sn'     => 'required|numeric|digits_between:8,15',
                     'products.*.description' => 'string|max:1000|required'
                 ]);
 
